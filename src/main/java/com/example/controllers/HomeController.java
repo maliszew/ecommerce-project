@@ -24,10 +24,10 @@ public class HomeController
     @RequestMapping(value = "/", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ProductResponse homespace() {
-        Products product = new Products("sample title", "sample description", 1234);
+        Products product = new Products("sample title", "sample description", 12345);
         productDAO.save(product);
         ProductResponse response = new ProductResponse();
-        response.setTitle("Sample");
+        response.setTitle("Sample? Home(Product)Controller");
         return response;
     }
 
