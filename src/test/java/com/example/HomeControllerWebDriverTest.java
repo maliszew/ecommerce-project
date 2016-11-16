@@ -33,8 +33,10 @@ public class HomeControllerWebDriverTest extends FluentTest {
     @Test
     public void testHome() {
         webDriver.get("http://localhost:8080/home");
-        assertEquals(webDriver.findElement(By.id("przycisk")).getText(),"ładny przycisk");
+        assertEquals(webDriver.findElement(By.id("przycisk")).getText(),"ładny przycisk"); // to jest asercja!!
     }
+
+
 }
 /*
 Run/configuraion..
