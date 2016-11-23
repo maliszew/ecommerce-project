@@ -1,6 +1,7 @@
 package com.example.pom;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.phantomjs.PhantomJSDriver;
 
 import java.util.ArrayList;
@@ -24,6 +25,17 @@ public class BasketPOM {
 
         //return 0;
     }
+
+    //WebElement link23;
+    //link23.getAttribute("href");
+
+    public Float getSuma() {
+        String s = this.phantomjs.findElementByCssSelector(".ceny suma").getText();
+        Float f = Float.parseFloat(s);
+        return f;
+    }
+
+    // itd... TBD
 
     public List<String> getListOfBasketItems() { // ... czy po Xpath, czy  po id, lecimy tak dalej. dzialamy po DOMie
         return new ArrayList<String>();
