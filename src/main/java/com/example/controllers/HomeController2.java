@@ -14,6 +14,6 @@ public class HomeController2 {
     @GetMapping("/home")
     public String home(Map<String,Object> template) {
         template.put("time", new Date());
-        return "home";
+        return "products";
     }
 }

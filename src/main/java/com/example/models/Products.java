@@ -23,17 +23,17 @@ public class Products {
     private String description;
 
     @NotNull
-    private Integer price;
+    private double price;
 
     public Products() {};
 
-    public Products(String title, String description, Integer price) {
+    public Products(String title, String description, double price) {
         this.title = title;
         this.description = description;
         this.price = price;
     }
 
-    public void setPrice(Integer price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
@@ -42,7 +42,7 @@ public class Products {
         this.description = description;
     }
 
-    public Integer getPrice() {
+    public double getPrice() {
 
         return price;
     }

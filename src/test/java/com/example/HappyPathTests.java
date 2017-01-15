@@ -8,7 +8,7 @@ import org.junit.Test;
  * Created by Yoga2pro on 16/11/2016.
  */
 public class HappyPathTests {
-
+/*
 
     private void pathToBasket(String productName, String categoryName) {
         homePage = new HomePOM(); // stworzyc sobie POMy jako private zeby nie tworzyc nowej instancji za kazdym razem
@@ -25,4 +25,5 @@ public class HappyPathTests {
         BasketPOM basketPage = new BasketPOM(this.webDriver);
         assertEquals(baskedPage.getListItemsCount(), 1); // jak zwroci jeden element to jest ok. to jest nasz test.
     }
+    */
 }

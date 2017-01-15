@@ -9,6 +9,6 @@ import javax.transaction.Transactional;
 /**
  * Created by Yoga2pro on 11/9/2016.
  */
-public interface PlatnosciDAO extends CrudRepository<Platnosci,Long> {
+public interface PaymentsDAO extends CrudRepository<Payments,Long> {
 }
 
