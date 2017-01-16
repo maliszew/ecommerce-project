@@ -1,6 +1,6 @@
 package com.example.controllers;
 
-import com.example.models.ProductDAO;
+import com.example.models.ProductsDAO;
 import com.example.responses.ProductResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -22,5 +22,5 @@ public class ProductsController {
     }
 
     @Autowired
-    private ProductDAO productDAO;
+    private ProductsDAO productsDAO;
 }

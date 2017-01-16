@@ -14,10 +14,18 @@ public class Payments {
     private long id;
 
     @NotNull
-    private double paymentSum;
+    private long userId;
+
+    public long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(long userId) {
+        this.userId = userId;
+    }
 
     @NotNull
-    private long orderNumber;
+    private double paymentSum;
 
     @NotNull
     private String paymentMethod;
@@ -26,8 +34,8 @@ public class Payments {
 
     public Payments(long nr, double sum, String way) {
         this.paymentSum = sum;
-        this.orderNumber = nr;
         this.paymentMethod = way;
+        this.userId = nr;
     }
 
     public double getPaymentSum() {
@@ -46,12 +54,4 @@ public class Payments {
         this.paymentMethod = method;
     }
 
-    public long getOrderNumber() {
-
-        return orderNumber;
-    }
-
-    public void setOrderNumber(long nr) {
-        this.orderNumber = nr;
-    }
 }

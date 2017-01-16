@@ -2,7 +2,7 @@ package com.example.controllers;
 
 import com.example.models.Payments;
 import com.example.models.PaymentsDAO;
-import com.example.models.ProductDAO;
+import com.example.models.ProductsDAO;
 import com.example.models.Products;
 import com.example.responses.ProductResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +35,7 @@ public class HomeController extends WebSecurityConfigurerAdapter
         // String fszystkie = productDAO.findAll();
         String fszystkie = "";
         int i = 0;
-        for(Products p : productDAO.findAll()) {
+        for(Products p : productsDAO.findAll()) {
             fszystkie += i++ + " " +  p.getTitle() + ", ";
         }
         System.out.println(fszystkie);
@@ -47,17 +47,17 @@ public class HomeController extends WebSecurityConfigurerAdapter
     @RequestMapping(value = "/restart", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ProductResponse restart() {
-        productDAO.deleteAll();
+        productsDAO.deleteAll();
         paymentsDAO.deleteAll();
 
-        productDAO.save(new Products("title1", "desc1", 50.12));
-        productDAO.save(new Products("title2", "desc2", 6.9));
+        productsDAO.save(new Products("title1", "desc1", 50.12));
+        productsDAO.save(new Products("title2", "desc2", 6.9));
         paymentsDAO.save(new Payments(1001, 125.34, "PayPal"));
         paymentsDAO.save(new Payments(1002, 21.37, "MasterCard"));
 
         String fszystkie = "";
         int i = 0;
-        for(Products p : productDAO.findAll()) {
+        for(Products p : productsDAO.findAll()) {
             fszystkie += i++ + " " +  p.getTitle() + ", ";
         }
         ProductResponse response = new ProductResponse();
@@ -66,7 +66,7 @@ public class HomeController extends WebSecurityConfigurerAdapter
     }
 
     @Autowired
-    private ProductDAO productDAO;
+    private ProductsDAO productsDAO;
 
     @Autowired
     private PaymentsDAO paymentsDAO;
