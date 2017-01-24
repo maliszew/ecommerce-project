@@ -52,6 +52,7 @@ public class HomeController extends WebSecurityConfigurerAdapter
 
         productsDAO.save(new Products("title1", "desc1", 50.12));
         productsDAO.save(new Products("title2", "desc2", 6.9));
+        productsDAO.save(new Products("title3", "desc3", 66.99));
         paymentsDAO.save(new Payments(1001, 125.34, "PayPal"));
         paymentsDAO.save(new Payments(1002, 21.37, "MasterCard"));
 

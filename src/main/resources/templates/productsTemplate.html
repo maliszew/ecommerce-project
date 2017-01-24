@@ -67,6 +67,10 @@
         <div id="prod">
             <p>Products</p>
         </div>
+
+        <div id="render">
+            <p>Test</p>
+        </div>
     </div>
 
 </div><!-- /.container -->
@@ -81,36 +85,93 @@
 <script src="/webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 <!--<script src="/webjars/bootstrap/3.3.7/js/ie10-viewport-bug-workaround.js"></script>-->
-<script src="/webjars/mustachejs/0.8.2/mustache.js"></script>
+<script src="/webjars/mustachejs/2.2.1/mustache.js"></script>
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.2.0/mustache.min.js"></script>-->
 <script id="allProd" type="text/template">
+    {{#allProducts}}
+        <br>{{title}} ${{price}} heh
+    {{/allProducts}}
+</script>
+<template id='allProd2'>
     Pro!
     <ul>{{#allProducts}}
-        <li>{{title}} ${{price}}</li>
+        <li><b>{{title}}</b> {{description}}. ${{price}}</li>
         {{/allProducts}}
     </ul>
-</script>
-<script>
+</template>
+<!--<script type="text/javascript">-->
+    <!--$(document).ready(function(){-->
+        <!--$.when($.ajax({id: "allProd", dataType: 'text'}),$.ajax({url: "/products", type: "GET", data: "json"}))-->
+                <!--.done(function(template, data){-->
+                    <!--Mustache.parse(template[0]);-->
+                    <!--var rendered = Mustache.render(template[0], {allProducts: data.allProducts});-->
+                    <!--$("#prod").html(rendered);-->
+                <!--})-->
+                <!--.fail(function(){-->
+                    <!--alert("Sorry there was an error.");-->
+                <!--});-->
+    <!--});-->
+<!--</script>-->
+<template id="template22">
+    Test template
+    {{#arraay}}
+    <div>
+        <h2> {{Title}}</h2>
+        <p>{{Course}}</p>
+        <p>{{Category}}</p>
+    </div>
+    {{/arraay}}
+</template>
+<script type="text/javascript">
+    var productListTemplate = "<h1>All products currently available:</h1>\
+    <ul>\{\{#allProducts\}\}\
+        <li><b>\{\{title\}\}</b> \{\{description\}\}. $\{\{price\}\}</li>\
+    \{\{/allProducts\}\}\
+    </ul>";
+
     $.ajax({
         url: "/products",
         type: "GET",
         data: "json",
         success: function(data) {
+            var templ = productListTemplate; // document.getElementById("allProd2").innerHTML.toString();
+            Mustache.parse(templ);
             console.log("renderrr");
+            console.log(templ);
             console.log(data);
-            var html = Mustache.to_html(allProd, data);
-            var html2 = Mustache.render(allProd, data);
-            console.log(html);
+            // var html = Mustache.to_html(templ, {allProducts: data});
+            var html2 = Mustache.render(templ, data);
+            // console.log(html);
             console.log(html2);
-            $('#prod').html(html2);
+            // $('#prod').html(html2);
+            document.getElementById('prod').innerHTML = html2;
         }
     });
 
-    function getMyData(myJson) {
-        var html = render(template, myJson);
-        console.log("renderrrrrrrr");
-        console.log(html);
-        $('#prod').html(html);
-    }
+//    function getMyData(myJson) {
+//        var html = render(template, myJson);
+//        console.log("renderrrrrrrr");
+//        console.log(html);
+//        $('#prod').html(html);
+//    }
+
+    var testStringTemplate = "Test template\
+    \{\{#arraay\}\}\
+    <div>\
+    <h2> \{\{Title\}\}</h2>\
+    <p>\{\{Course\}\}</p>\
+    <p>\{\{Category\}\}</p>\
+    </div>\
+    \{\{/arraay\}\}";
+
+    var data22 = {"arraay":[{"Title":"Algorithms","Course":"CSI241","Category":"science"},{"Title":"Fluid dynamics","Course":"PHY345","Category":"science"}]};
+    var template2 = testStringTemplate; // document.getElementById('template22').innerHTML;
+    Mustache.parse(template2);
+    var html22 = Mustache.render(template2, data22);
+    console.log(data22);
+    console.log("test" + template2);
+    console.log("test" + html22);
+    document.getElementById('render').innerHTML = html22;
 
 </script>
 </body>
