@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/webjars/bootstrap/3.3.7/favicon.ico">
+
+    <title>One product {{ id }}</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/webjars/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/templates/starter-template.css" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Best store</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="/">Main page</a></li>
+                <li><a href="/all">All products</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+</nav>
+
+<div class="container">
+
+    <div class="starter-template">
+        <br /><br /><br /><br />
+        <h1>Online Store</h1>
+        <p class="lead">Best Online Store! Here you will buy everything you need.
+            <!--<br>id: {{ id }}-->
+        </p>
+
+        <div id="prod">
+            <p>Product details will appear here........</p>
+        </div>
+    </div>
+
+</div><!-- /.container -->
+
+<script src="/webjars/jquery/2.0.3/jquery.min.js"></script>
+<script src="/webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="/webjars/mustachejs/2.2.1/mustache.js"></script>
+
+<script type="text/javascript">
+    var oneProductTemplate = "<h1>\{\{ title \}\}</h1>\
+        <p>\{\{description\}\}!!!</p>\
+        <p><small>$\{\{price\}\}</small></p>\
+    </ul>";
+
+    $.ajax({
+        url: "/products/{{ id }}",
+        type: "GET",
+        data: "json",
+        success: function(data) {
+            var templ = oneProductTemplate;
+            Mustache.parse(templ);
+            console.log("renderrr");
+            console.log(templ);
+            console.log(data);
+            var html2 = Mustache.render(templ, data);
+            console.log(html2);
+            document.getElementById('prod').innerHTML = html2;
+        },
+        error: function() {
+            document.getElementById('prod').innerHTML = "<h2>Product with id {{ id }} does not exist!</h2>";
+        }
+    });
+</script>
+
+</body>
+</html>

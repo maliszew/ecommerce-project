@@ -21,7 +21,7 @@ import static org.junit.Assert.assertEquals;
 @SpringApplicationConfiguration(classes = DemoApplication.class)
 @WebAppConfiguration
 @IntegrationTest("server.port:8080")
-public class HomeControllerWebDriverTest extends FluentTest {
+public class AdminControllerWebDriverTest extends FluentTest {
 
     private WebDriver webDriver = new PhantomJSDriver();
 

@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <link rel="icon" href="/webjars/bootstrap/3.3.7/favicon.ico">
 
-    <title>Starter Template for Bootstrap</title>
+    <title>All products</title>
 
     <!-- Bootstrap core CSS -->
     <link href="/webjars/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
@@ -42,12 +42,12 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Project name</a>
+            <a class="navbar-brand" href="/">Best Store</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Home</a></li>
-                <li><a href="#about">About</a></li>
+                <li class="active"><a href="/">Main page</a></li>
+                <li><a href="/all">All products</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </div><!--/.nav-collapse -->
@@ -58,18 +58,18 @@
 
     <div class="starter-template">
         <br /><br /><br /><br />
-        <h1>Bootstrap starter template!</h1>
-        <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.
-            <br>time: {{ time.time }}
-            <br>.
+        <h1>Online Store</h1>
+        <p class="lead">Best Online Store! Here you will buy everything you need.
+
+            <br>Click on a product name to see more details...
         </p>
 
         <div id="prod">
-            <p>Products</p>
+            <p>Products are being loaded............</p>
         </div>
 
         <div id="render">
-            <p>Test</p>
+            <p></p>
         </div>
     </div>
 
@@ -87,18 +87,18 @@
 <!--<script src="/webjars/bootstrap/3.3.7/js/ie10-viewport-bug-workaround.js"></script>-->
 <script src="/webjars/mustachejs/2.2.1/mustache.js"></script>
 <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.2.0/mustache.min.js"></script>-->
-<script id="allProd" type="text/template">
-    {{#allProducts}}
-        <br>{{title}} ${{price}} heh
-    {{/allProducts}}
-</script>
-<template id='allProd2'>
-    Pro!
-    <ul>{{#allProducts}}
-        <li><b>{{title}}</b> {{description}}. ${{price}}</li>
-        {{/allProducts}}
-    </ul>
-</template>
+<!--<script id="allProd" type="text/template">-->
+    <!--{{#allProducts}}-->
+        <!--<br>{{title}} ${{price}} heh-->
+    <!--{{/allProducts}}-->
+<!--</script>-->
+<!--<template id='allProd2'>-->
+    <!--Pro!-->
+    <!--<ul>{{#allProducts}}-->
+        <!--<li><b>{{title}}</b> {{description}}. ${{price}}</li>-->
+        <!--{{/allProducts}}-->
+    <!--</ul>-->
+<!--</template>-->
 <!--<script type="text/javascript">-->
     <!--$(document).ready(function(){-->
         <!--$.when($.ajax({id: "allProd", dataType: 'text'}),$.ajax({url: "/products", type: "GET", data: "json"}))-->
@@ -112,20 +112,20 @@
                 <!--});-->
     <!--});-->
 <!--</script>-->
-<template id="template22">
-    Test template
-    {{#arraay}}
-    <div>
-        <h2> {{Title}}</h2>
-        <p>{{Course}}</p>
-        <p>{{Category}}</p>
-    </div>
-    {{/arraay}}
-</template>
+<!--<template id="template22">-->
+    <!--Test template-->
+    <!--{{#arraay}}-->
+    <!--<div>-->
+        <!--<h2> {{Title}}</h2>-->
+        <!--<p>{{Course}}</p>-->
+        <!--<p>{{Category}}</p>-->
+    <!--</div>-->
+    <!--{{/arraay}}-->
+<!--</template>-->
 <script type="text/javascript">
     var productListTemplate = "<h1>All products currently available:</h1>\
     <ul>\{\{#allProducts\}\}\
-        <li><b>\{\{title\}\}</b> \{\{description\}\}. $\{\{price\}\}</li>\
+        <li><a href=\"/show/\{\{id\}\}\"><b>\{\{title\}\}</b></a> \{\{description\}\}. $\{\{price\}\}</li>\
     \{\{/allProducts\}\}\
     </ul>";
 
@@ -171,7 +171,7 @@
     console.log(data22);
     console.log("test" + template2);
     console.log("test" + html22);
-    document.getElementById('render').innerHTML = html22;
+//    document.getElementById('render').innerHTML = html22;
 
 </script>
 </body>
