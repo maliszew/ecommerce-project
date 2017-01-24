@@ -15,14 +15,14 @@
     <link href="/webjars/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <link href="/webjars/bootstrap/3.3.7/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+    <!--<link href="/webjars/bootstrap/3.3.7/css/ie10-viewport-bug-workaround.css" rel="stylesheet">-->
 
     <!-- Custom styles for this template -->
-    <link href="starter-template.css" rel="stylesheet">
+    <link href="/templates/starter-template.css" rel="stylesheet">
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-    <!--[if lt IE 9]><script src="/webjars/bootstrap/3.3.7/js/ie8-responsive-file-warning.js"></script><![endif]-->
-    <script src="/webjars/bootstrap/3.3.7/js/ie-emulation-modes-warning.js"></script>
+    <!--&lt;!&ndash;[if lt IE 9]><script src="/webjars/bootstrap/3.3.7/js/ie8-responsive-file-warning.js"></script><![endif]&ndash;&gt;-->
+    <!--<script src="/webjars/bootstrap/3.3.7/js/ie-emulation-modes-warning.js"></script>-->
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -65,7 +65,7 @@
         </p>
 
         <div id="prod">
-
+            <p>Products</p>
         </div>
     </div>
 
@@ -75,26 +75,39 @@
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script>window.jQuery || document.write('<script src="/webjars/jquery/jquery.min.js"><\/script>')</script>
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>-->
+<!--<script>window.jQuery || document.write('<script src="/webjars/jquery/jquery.min.js"><\/script>')</script>-->
+<script src="/webjars/jquery/2.0.3/jquery.min.js"></script>
 <script src="/webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-<script src="/webjars/bootstrap/3.3.7/js/ie10-viewport-bug-workaround.js"></script>
+<!--<script src="/webjars/bootstrap/3.3.7/js/ie10-viewport-bug-workaround.js"></script>-->
+<script src="/webjars/mustachejs/0.8.2/mustache.js"></script>
+<script id="allProd" type="text/template">
+    Pro!
+    <ul>{{#allProducts}}
+        <li>{{title}} ${{price}}</li>
+        {{/allProducts}}
+    </ul>
+</script>
 <script>
     $.ajax({
         url: "/products",
         type: "GET",
-        dataType: "json",
-        success: render
+        data: "json",
+        success: function(data) {
+            console.log("renderrr");
+            console.log(data);
+            var html = Mustache.to_html(allProd, data);
+            var html2 = Mustache.render(allProd, data);
+            console.log(html);
+            console.log(html2);
+            $('#prod').html(html2);
+        }
     });
 
-    var template = "Pro<ul>{{#allProducts}}" +
-    "<li>{{title}} ${{price}}</li>" +
-    "{{/allProducts}}" +
-    "</ul>";
-
-    function render(jsonResponse) {
-        var html = Mustache.to_html(template, jsonResponse);
+    function getMyData(myJson) {
+        var html = render(template, myJson);
+        console.log("renderrrrrrrr");
         console.log(html);
         $('#prod').html(html);
     }
