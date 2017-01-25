@@ -129,12 +129,30 @@
     \{\{/allProducts\}\}\
     </ul>";
 
+    var productTableTemplate = "<div class=\"col-md-6\">" +
+    "<table class='table table-stripped'>" +
+            "<thead>" +
+                "<tr>" +
+                    "<th>#</th>" +
+                    "<th>Product name</th>" +
+                    "<th>Description</th>" +
+                    "<th>Price</th>" +
+                "</tr>" +
+            "</thead>" +
+            "<tbody>" +
+                "\{\{#allProducts\}\}" +
+                    "<tr><td>\{\{ id \}\}</td><td><a href=\"/show/\{\{id\}\}\"><b>\{\{title\}\}</b></a></td> <td>\{\{description\}\}</td> <td>$\{\{price\}\}</td></tr>" +
+                "\{\{/allProducts\}\}" +
+            "</tbody>" +
+            "</table>" +
+    "</div>";
+
     $.ajax({
         url: "/products",
         type: "GET",
         data: "json",
         success: function(data) {
-            var templ = productListTemplate; // document.getElementById("allProd2").innerHTML.toString();
+            var templ = productTableTemplate; // document.getElementById("allProd2").innerHTML.toString();
             Mustache.parse(templ);
             console.log("renderrr");
             console.log(templ);

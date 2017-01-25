@@ -65,12 +65,22 @@
         <p><small>$\{\{price\}\}</small></p>\
     </ul>";
 
+    var oneProductPanel = "<div class='col-sm-4'>" +
+            "<div class='panel-heading'>" +
+                "<h3 class='panel-title'>\{\{ title \}\}</h3>" +
+            "</div>" +
+            "<div class='panel-body'>" +
+                "<p>Best product in this category!<br>\{\{description\}\}<br>Buy \{\{ title \}\} right now!!!</p>" +
+                "<p><small>$\{\{price\}\}</small></p>" +
+            "</div>" +
+            "</div>";
+
     $.ajax({
         url: "/products/{{ id }}",
         type: "GET",
         data: "json",
         success: function(data) {
-            var templ = oneProductTemplate;
+            var templ = oneProductPanel;
             Mustache.parse(templ);
             console.log("renderrr");
             console.log(templ);
